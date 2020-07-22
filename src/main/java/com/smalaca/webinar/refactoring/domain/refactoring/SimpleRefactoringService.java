@@ -15,9 +15,13 @@ public class SimpleRefactoringService {
     }
 
     public void apply(ClassCode code, Developer developer) {
-        if (codeBaseRepository.contains(code) && testsSuiteRepository.testsExistFor(code)) {
+        if (isPossibleToStartRefactoring(code)) {
             startRefactoringOf(code, developer);
         }
+    }
+
+    private boolean isPossibleToStartRefactoring(ClassCode code) {
+        return codeBaseRepository.contains(code) && testsSuiteRepository.testsExistFor(code);
     }
 
     private void startRefactoringOf(ClassCode code, Developer developer) {
