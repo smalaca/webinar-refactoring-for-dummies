@@ -1,0 +1,40 @@
+package com.smalaca.webinar.refactoring.domain.classcode;
+
+import com.smalaca.webinar.refactoring.domain.attributecode.AttributeCode;
+import com.smalaca.webinar.refactoring.domain.constantcode.ConstantCode;
+import com.smalaca.webinar.refactoring.domain.methodcode.MethodCode;
+import com.smalaca.webinar.refactoring.domain.refactoring.RefactoringScope;
+
+import java.util.List;
+
+public class ClassCode {
+    private final List<ConstantCode> constants;
+    private final List<AttributeCode> attributes;
+    private final List<MethodCode> methods;
+    private boolean complex;
+    private boolean unreadable;
+
+    ClassCode(List<ConstantCode> constants, List<AttributeCode> attributes, List<MethodCode> methods) {
+        this.constants = constants;
+        this.attributes = attributes;
+        this.methods = methods;
+    }
+
+    MethodCode getMethodByName(RefactoringScope scope) {
+        return methods.stream()
+                .filter(methodCode -> methodCode.hasNameSameAs(scope.getName()))
+                .findAny().get();
+    }
+
+    public boolean isComplex() {
+        return complex;
+    }
+
+    public boolean isUnreadable() {
+        return unreadable;
+    }
+
+    boolean isComplexOrUnreadable() {
+        return complex || unreadable;
+    }
+}
