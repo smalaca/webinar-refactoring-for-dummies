@@ -22,7 +22,7 @@ public class ClassCode {
         this.methods = methods;
     }
 
-    boolean isComplexOrUnreadable() {
+    boolean shouldBeRefactored() {
         return complex || unreadable;
     }
 
