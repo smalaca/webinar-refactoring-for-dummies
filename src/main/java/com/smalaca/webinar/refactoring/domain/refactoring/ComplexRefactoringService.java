@@ -20,7 +20,7 @@ public class ComplexRefactoringService {
     private boolean isPossibleToStartRefactoring(ClassCode code, Developer developer) {
         return testsSuiteRepository.testsExistFor(code)
                 && developer.canModify(code)
-                && (code.isComplex() || code.isUnreadable());
+                && code.canBeImproved();
     }
 
     private void startRefactoringOf(ClassCode code, Developer developer) {

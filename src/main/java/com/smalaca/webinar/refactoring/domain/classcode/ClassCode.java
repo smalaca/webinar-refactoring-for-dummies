@@ -22,14 +22,6 @@ public class ClassCode {
         this.methods = methods;
     }
 
-    public boolean isComplex() {
-        return complex;
-    }
-
-    public boolean isUnreadable() {
-        return unreadable;
-    }
-
     boolean isComplexOrUnreadable() {
         return complex || unreadable;
     }
@@ -48,5 +40,17 @@ public class ClassCode {
 
     private MethodCondition getConditionBy(RefactoringScope scope) {
         return getMethodByName(scope).getCondition(scope);
+    }
+
+    public boolean canBeImproved() {
+        return isComplex() || isUnreadable();
+    }
+
+    public boolean isComplex() {
+        return complex;
+    }
+
+    public boolean isUnreadable() {
+        return unreadable;
     }
 }
