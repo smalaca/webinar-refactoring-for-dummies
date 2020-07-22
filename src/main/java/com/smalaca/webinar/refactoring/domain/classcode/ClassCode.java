@@ -3,6 +3,7 @@ package com.smalaca.webinar.refactoring.domain.classcode;
 import com.smalaca.webinar.refactoring.domain.attributecode.AttributeCode;
 import com.smalaca.webinar.refactoring.domain.constantcode.ConstantCode;
 import com.smalaca.webinar.refactoring.domain.methodcode.MethodCode;
+import com.smalaca.webinar.refactoring.domain.methodcode.MethodCondition;
 import com.smalaca.webinar.refactoring.domain.refactoring.RefactoringScope;
 
 import java.util.List;
@@ -20,12 +21,6 @@ public class ClassCode {
         this.methods = methods;
     }
 
-    MethodCode getMethodByName(RefactoringScope scope) {
-        return methods.stream()
-                .filter(methodCode -> methodCode.hasNameSameAs(scope.getName()))
-                .findAny().get();
-    }
-
     public boolean isComplex() {
         return complex;
     }
@@ -36,5 +31,15 @@ public class ClassCode {
 
     boolean isComplexOrUnreadable() {
         return complex || unreadable;
+    }
+
+    MethodCondition getConditionBy(RefactoringScope scope) {
+        return getMethodByName(scope).getCondition(scope);
+    }
+
+    private MethodCode getMethodByName(RefactoringScope scope) {
+        return methods.stream()
+                .filter(methodCode -> methodCode.hasNameSameAs(scope.getName()))
+                .findAny().get();
     }
 }
