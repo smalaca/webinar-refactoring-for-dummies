@@ -15,13 +15,15 @@ public class SimpleRefactoringService {
     }
 
     public void apply(ClassCode code, Developer developer) {
-        if (isPossibleToStartRefactoring(code)) {
+        if (isRequiredToStartRefactoring(code)) {
             startRefactoringOf(code, developer);
         }
     }
 
-    private boolean isPossibleToStartRefactoring(ClassCode code) {
-        return codeBaseRepository.contains(code) && testsSuiteRepository.testsExistFor(code);
+    private boolean isRequiredToStartRefactoring(ClassCode code) {
+        return codeBaseRepository.contains(code)
+                && testsSuiteRepository.testsExistFor(code)
+                && code.isComplex();
     }
 
     private void startRefactoringOf(ClassCode code, Developer developer) {
