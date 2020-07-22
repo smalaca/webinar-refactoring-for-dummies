@@ -7,14 +7,14 @@ import com.smalaca.webinar.refactoring.domain.refactoring.RefactoringType;
 
 import java.time.LocalDate;
 
-class CodeChange {
+public class CodeChange {
     private final Author author;
     private final RefactoringType type;
     private final RefactoringScope scope;
     private final RefactoringJustification justification;
     private final LocalDate today;
 
-    CodeChange(
+    public CodeChange(
             Author author, RefactoringType type, RefactoringScope scope, RefactoringJustification justification, LocalDate today) {
         this.author = author;
         this.type = type;

@@ -1,6 +1,7 @@
 package com.smalaca.webinar.refactoring.infrastructure.history;
 
 import com.smalaca.webinar.refactoring.domain.developer.Author;
+import com.smalaca.webinar.refactoring.domain.history.CodeChange;
 import com.smalaca.webinar.refactoring.domain.history.HistoryService;
 import com.smalaca.webinar.refactoring.domain.refactoring.RefactoringJustification;
 import com.smalaca.webinar.refactoring.domain.refactoring.RefactoringScope;
@@ -18,7 +19,7 @@ class HistoryServiceClient {
     void process(
             Author author, RefactoringType type, RefactoringScope scope, RefactoringJustification justification, LocalDate today) {
         // some code
-        historyService.store(author, type, scope, justification, today);
+        historyService.store(new CodeChange(author, type, scope, justification, today));
         // some code
     }
 }

@@ -8,13 +8,8 @@ import com.smalaca.webinar.refactoring.domain.refactoring.RefactoringType;
 import java.time.LocalDate;
 
 public class HistoryService {
-    public void store(
-            Author author, RefactoringType type, RefactoringScope scope, RefactoringJustification justification,
-            LocalDate today) {
-        store(new CodeChange(author, type, scope, justification, today));
-    }
 
-    private void store(CodeChange codeChange) {
+    public void store(CodeChange codeChange) {
         instruction1(codeChange.getAuthor(), codeChange.getType());
         instruction2(codeChange.getScope(), codeChange.getJustification(), codeChange.getToday());
         instruction3();
