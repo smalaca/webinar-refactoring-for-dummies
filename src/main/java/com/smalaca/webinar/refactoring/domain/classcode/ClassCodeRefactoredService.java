@@ -1,12 +1,9 @@
 package com.smalaca.webinar.refactoring.domain.classcode;
 
-import com.smalaca.webinar.refactoring.domain.methodcode.MethodCondition;
 import com.smalaca.webinar.refactoring.domain.refactoring.Refactoring;
 
 public class ClassCodeRefactoredService {
     public void apply(ClassCode code, Refactoring refactoring) {
-        MethodCondition condition = code.getConditionBy(refactoring.getScope());
-
-        condition.refactor(refactoring);
+        code.refactor(refactoring);
     }
 }
