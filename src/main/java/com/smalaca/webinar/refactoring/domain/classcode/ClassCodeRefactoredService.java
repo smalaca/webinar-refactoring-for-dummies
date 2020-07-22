@@ -7,6 +7,6 @@ public class ClassCodeRefactoredService {
     public void apply(ClassCode code, Refactoring refactoring) {
         MethodCondition condition = code.getConditionBy(refactoring.getScope());
 
-        RefactoringApplier.applyRefactoringFor(condition, refactoring);
+        condition.refactor(refactoring);
     }
 }
