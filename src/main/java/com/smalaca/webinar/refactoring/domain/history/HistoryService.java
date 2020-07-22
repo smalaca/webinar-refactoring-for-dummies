@@ -9,24 +9,29 @@ import java.time.LocalDate;
 
 public class HistoryService {
     public void store(
-            Author author, RefactoringType type, RefactoringScope scope, RefactoringJustification justification, LocalDate today) {
-        instruction1(author, type);
-        instruction2(scope, justification, today);
+            Author author, RefactoringType type, RefactoringScope scope, RefactoringJustification justification,
+            LocalDate today) {
+        store(new CodeChange(author, type, scope, justification, today));
+    }
+
+    private void store(CodeChange codeChange) {
+        instruction1(codeChange.getAuthor(), codeChange.getType());
+        instruction2(codeChange.getScope(), codeChange.getJustification(), codeChange.getToday());
         instruction3();
         instruction4();
 
-        if (question1(author)) {
-            if (question2(scope)) {
-                instruction5(author, scope);
-                instruction6(author, scope, justification);
+        if (question1(codeChange.getAuthor())) {
+            if (question2(codeChange.getScope())) {
+                instruction5(codeChange.getAuthor(), codeChange.getScope());
+                instruction6(codeChange.getAuthor(), codeChange.getScope(), codeChange.getJustification());
                 instruction7();
-            } else if (question3(author, scope)) {
+            } else if (question3(codeChange.getAuthor(), codeChange.getScope())) {
                 instruction8();
-                instruction9(scope);
+                instruction9(codeChange.getScope());
             }
         }
 
-        instruction10(author, type, scope, justification, today);
+        instruction10(codeChange.getAuthor(), codeChange.getType(), codeChange.getScope(), codeChange.getJustification(), codeChange.getToday());
     }
 
     private void instruction1(Author author, RefactoringType type) {
